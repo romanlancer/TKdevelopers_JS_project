@@ -1,14 +1,14 @@
-.header {
-	background-repeat: no-repeat;
+.header_library {
 	background-size: cover;
+	background-repeat: no-repeat;
 	background-image: linear-gradient(
 			to right,
 			rgba(0, 0, 0, 0.56),
 			rgba(0, 0, 0, 0.56)
 		),
-		url(../images/main_bg_img_mobile_1x-min.jpg);
+		url(../images/library_bg_img_mobile_1x-min.jpg);
+	padding-bottom: 70px;
 	margin: 0 auto;
-	padding-bottom: 100px;
 	@media (min-device-pixel-ratio: 2),
 		(min-resolution: 192dpi),
 		(min-resolution: 2dppx) {
@@ -17,7 +17,7 @@
 				rgba(0, 0, 0, 0.56),
 				rgba(0, 0, 0, 0.56)
 			),
-			url(../images/main_bg_img_mobile_2x-min.jpg);
+			url(../images/library_bg_img_mobile_2x-min.jpg);
 	}
 	@media (min-device-pixel-ratio: 3),
 		(min-resolution: 384dpi),
@@ -27,7 +27,7 @@
 				rgba(0, 0, 0, 0.56),
 				rgba(0, 0, 0, 0.56)
 			),
-			url(../images/main_bg_img_mobile_3x-min.jpg);
+			url(../images/library_bg_img_mobile_3x-min.jpg);
 	}
 	@media screen and (min-width: $tablet) {
 		background-image: linear-gradient(
@@ -35,7 +35,7 @@
 				rgba(0, 0, 0, 0.56),
 				rgba(0, 0, 0, 0.56)
 			),
-			url(../images/main_bg_img_tablet_1x-min.jpg);
+			url(../images/library_bg_img_tablet_1x-min.jpg);
 		@media (min-device-pixel-ratio: 2),
 			(min-resolution: 192dpi),
 			(min-resolution: 2dppx) {
@@ -44,7 +44,7 @@
 					rgba(0, 0, 0, 0.56),
 					rgba(0, 0, 0, 0.56)
 				),
-				url(../images/main_bg_img_tablet_2x-min.jpg);
+				url(../images/library_bg_img_tablet_2x-min.jpg);
 		}
 		@media (min-device-pixel-ratio: 3),
 			(min-resolution: 384dpi),
@@ -54,7 +54,7 @@
 					rgba(0, 0, 0, 0.56),
 					rgba(0, 0, 0, 0.56)
 				),
-				url(../images/main_bg_img_tablet_3x-min.jpg);
+				url(../images/library_bg_img_tablet_3x-min.jpg);
 		}
 	}
 	@media screen and (min-width: $desktop) {
@@ -65,7 +65,7 @@
 				rgba(0, 0, 0, 0.56),
 				rgba(0, 0, 0, 0.56)
 			),
-			url(../images/main_bg_img_desktop_1x-min.jpg);
+			url(../images/library_bg_img_desktop_1x-min.jpg);
 		@media (min-device-pixel-ratio: 2),
 			(min-resolution: 192dpi),
 			(min-resolution: 2dppx) {
@@ -74,7 +74,7 @@
 					rgba(0, 0, 0, 0.56),
 					rgba(0, 0, 0, 0.56)
 				),
-				url(../images/main_bg_img_desktop_2x-min.jpg);
+				url(../images/library_bg_img_desktop_2x-min.jpg);
 		}
 		@media (min-device-pixel-ratio: 3),
 			(min-resolution: 384dpi),
@@ -84,82 +84,55 @@
 					rgba(0, 0, 0, 0.56),
 					rgba(0, 0, 0, 0.56)
 				),
-				url(../images/main_bg_img_desktop_3x-min.jpg);
+				url(../images/library_bg_img_desktop_3x-min.jpg);
 		}
 	}
 }
-.header_icon {
-	margin-top: 45px;
-}
 
-.header_wrapper {
-	display: flex;
-	align-items: baseline;
-}
-
-.header_logo {
-	display: none;
-	@media screen and (min-width: $tablet) {
-		display: block;
-		font-weight: 500;
-		font-size: 30px;
-		line-height: 1.17;
-		margin-left: 12px;
-		color: var(--first-text-color);
-	}
-}
-
-.search-form {
-	margin-top: 37px;
-	display: flex;
-	justify-content: center;
-}
-
-.search-form_wrapper {
-	border-bottom: 0.5px solid var(--first-text-color);
-}
-
-.search-form_input {
-	background-color: transparent;
-	color: var(--first-text-color);
-	width: 280px;
-	@media screen and (min-width: $tablet) {
-		width: 336px;
-	}
-
-	&::placeholder {
-		color: var(--first-text-color);
-		font-size: 14px;
-		line-height: 1.14;
-	}
-}
-
-.search-form_button {
-	background-color: transparent;
-}
-
-.navigation {
-	margin-left: auto;
-	&_list {
-		display: flex;
-	}
-	&_link {
-		color: var(--first-text-color);
-	}
-	&_item:not(:last-child) {
-		margin-right: 40px;
-	}
-}
-.navigation_link--current {
+.nav-library_link--current {
 	position: relative;
 	&::after {
 		content: ' ';
 		position: absolute;
-		width: 48px;
+		width: 96px;
 		height: 4px;
 		background-color: var(--accent-color);
 		bottom: -4px;
 		right: 0;
 		border-radius: 2px;
 	}
+}
+
+.btn_watched {
+	background-color: var(--accent-color);
+	color: var(--first-text-color);
+	padding: 14px 38px 12px;
+	border-radius: 5px;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+	margin-right: 15px;
+	margin-top: 60px;
+	text-transform: uppercase;
+	@media screen and (min-width: $tablet) {
+		margin-top: 45px;
+	}
+}
+
+.btn_queue {
+	background-color: transparent;
+	padding: 12px 45px 12px;
+	border-radius: 5px;
+	border: 1px solid #ffffff;
+	color: var(--first-text-color);
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+	text-transform: uppercase;
+}
+
+.btn-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
 }
