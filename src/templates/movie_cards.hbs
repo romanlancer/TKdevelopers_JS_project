@@ -1,14 +1,6 @@
 {{#each this}}
-	{{#each results}}
-		<li class='movie'>
-			<img
-				class='movie_image'
-				src={{poster_path}}
-				alt={{title}}
-				loading='lazy'
-			/>
-			<h2 class='movie_title'></h2>
-			<p><span></span></p>
-		</li>
-	{{/each}}
+	<li class='movie'>
+		<img class='movie_image' src={{poster}} alt='poster' loading='lazy' />
+		<h2 class='movie_title'>{{original_title}}</h2>
+	</li>
 {{/each}}

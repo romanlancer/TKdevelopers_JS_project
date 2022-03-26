@@ -28,7 +28,14 @@ export default class MoviesApiService {
 
 	async getFilmsByName() {
 		try {
-			const url = `${BASE_URL}/3/search/movie?query=${this.searchQuery}&api_key=${API_KEY}`;
+			const searchParams = new URLSearchParams({
+				api_key: 'e236468c654efffdf9704cd975a74a96',
+				query: this.searchQuery,
+				language: 'en-US',
+				page: this.page,
+				include_adult: true,
+			});
+			const url = `${BASE_URL}/3/search/movie?${searchParams}`;
 			const response = await axios.get(url);
 			return response;
 		} catch (error) {
@@ -46,3 +53,9 @@ export default class MoviesApiService {
 		}
 	}
 }
+
+const apiMovies = new MoviesApiService();
+apiMovies.getFilmsByName();
+console.log(apiMovies.getFilmsByName());
+apiMovies.getPopularFilms();
+console.log(apiMovies.getPopularFilms());
