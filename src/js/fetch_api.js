@@ -8,14 +8,6 @@ export default class MoviesApiService {
 		this.page = 1;
 	}
 
-	set query(newQuery) {
-		this.query = newQuery;
-	}
-
-	get query() {
-		return this.searchQuery;
-	}
-
 	async getPopularFilms() {
 		try {
 			const url = `${BASE_URL}/3/trending/movie/week?api_key=${API_KEY}`;
@@ -52,10 +44,24 @@ export default class MoviesApiService {
 			return error;
 		}
 	}
+	set query(newQuery) {
+		this.searchQuery = newQuery;
+	}
+
+	get query() {
+		return this.searchQuery;
+	}
+
+	incrementPage() {
+		this.page += 1;
+	}
+
+	resetPage() {
+		this.page = 1;
+	}
 }
 
 const apiMovies = new MoviesApiService();
-apiMovies.getFilmsByName();
-console.log(apiMovies.getFilmsByName());
-apiMovies.getPopularFilms();
-console.log(apiMovies.getPopularFilms());
+
+apiMovies.query = 'bullshit';
+console.log(apiMovies.query);

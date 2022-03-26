@@ -13,7 +13,6 @@ const library = document.querySelector('[data-library]');
 const moviesApiService = new MoviesApiService();
 
 const moviePagination = new Pagination({
-	total: 100,
 	onChange(value) {
 		handlePageChange(value);
 		currentPageRef.textContent = value;

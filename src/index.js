@@ -3,3 +3,4 @@ import './js/fetch_api';
 import './js/generate_img_path';
 import './js/render_trends';
 import './js/pagination';
+import './js/render_search';
