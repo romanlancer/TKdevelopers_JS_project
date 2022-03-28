@@ -54,14 +54,16 @@ function onSearch(e) {
 
 	const handlePageChange = currentPage => {
 		moviesApiService.getFilmsByName(currentPage).then(({ data }) => {
-			renderMovieList(data.results);
+			moviesApiService.incrementPage();
+			clearMoviesContainer();
+			renderMovieList(data.results.slice(0, 9));
 		});
 	};
 
 	moviesApiService.getFilmsByName().then(({ data }) => {
 		const { results: movies } = data;
-		moviesApiService.incrementPage();
-		renderMovieList(movies);
+
+		renderMovieList(movies.slice(0, 9));
 	});
 
 	nextPageRef.addEventListener('click', () => {

@@ -34,7 +34,10 @@ const renderMovieList = movies => {
 
 const handlePageChange = currentPage => {
 	moviesApiService.getPopularFilms(currentPage).then(({ data }) => {
-		renderMovieList(data.results);
+		clearMoviesContainer();
+		moviesApiService.incrementPage();
+		data.results.splice(0, 9);
+		renderMovieList(data.results.slice(0, 9));
 	});
 };
 
@@ -49,5 +52,9 @@ prevPageRef.addEventListener('click', () => {
 moviesApiService.getPopularFilms().then(({ data }) => {
 	const { results: movies } = data;
 
-	renderMovieList(movies);
+	renderMovieList(movies.slice(0, 9));
 });
+
+function clearMoviesContainer() {
+	moviesListRef.innerHTML = '';
+}

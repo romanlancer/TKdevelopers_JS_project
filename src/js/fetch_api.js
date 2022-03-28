@@ -55,7 +55,9 @@ export default class MoviesApiService {
 	incrementPage() {
 		this.page += 1;
 	}
-
+	decrementPage() {
+		this.page += 1;
+	}
 	resetPage() {
 		this.page = 1;
 	}
