@@ -1,3 +1,5 @@
+import MoviesApiService from './fetch_api';
+
 export default class Pagination {
 	#currentPage = 1;
 

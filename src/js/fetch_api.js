@@ -4,8 +4,8 @@ const API_KEY = 'e236468c654efffdf9704cd975a74a96';
 
 export default class MoviesApiService {
 	constructor() {
-		this.searchQuery = '';
 		this.page = 1;
+		this.searchQuery = '';
 	}
 
 	async getPopularFilms() {
@@ -56,14 +56,9 @@ export default class MoviesApiService {
 		this.page += 1;
 	}
 	decrementPage() {
-		this.page += 1;
+		this.page -= 1;
 	}
 	resetPage() {
 		this.page = 1;
 	}
 }
-
-const apiMovies = new MoviesApiService();
-
-apiMovies.query = 'bullshit';
-console.log(apiMovies.query);

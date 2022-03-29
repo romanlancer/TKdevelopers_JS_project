@@ -23,12 +23,19 @@ searchFormRef.addEventListener('submit', onSearch);
 function onSearch(e) {
 	e.preventDefault();
 	moviesApiService.query = e.currentTarget.elements.searchQuery.value;
-	console.log(moviesApiService.query);
+
 	if (moviesApiService.query === '') {
 		return Notiflix.Notify.failure('Wrong attempt bro, please enter something');
 	}
 	moviesApiService.resetPage();
 	clearMoviesContainer();
+	const moviePagination = new Pagination({
+		total: 100,
+		onChange(value) {
+			handlePageChange(value);
+			currentPageRef.textContent = value;
+		},
+	});
 	const renderMovieList = movies => {
 		const moviesList = movies.map(movie => {
 			const { original_title, poster_path } = movie;
@@ -44,34 +51,30 @@ function onSearch(e) {
 			moviesCardTemplate(moviesList),
 		);
 	};
-	const moviePagination = new Pagination({
-		total: 100,
-		onChange(value) {
-			handlePageChange(value);
-			currentPageRef.textContent = value;
-		},
-	});
-
-	const handlePageChange = currentPage => {
-		moviesApiService.getFilmsByName(currentPage).then(({ data }) => {
-			moviesApiService.incrementPage();
-			clearMoviesContainer();
-			renderMovieList(data.results.slice(0, 9));
-		});
-	};
-
 	moviesApiService.getFilmsByName().then(({ data }) => {
 		const { results: movies } = data;
 
 		renderMovieList(movies.slice(0, 9));
+		console.log(data);
 	});
+
+	const handlePageChange = currentPage => {
+		moviesApiService.getFilmsByName(currentPage).then(({ data }) => {
+			clearMoviesContainer();
+
+			renderMovieList(data.results.slice(0, 9));
+			console.log(data);
+		});
+	};
 
 	nextPageRef.addEventListener('click', () => {
 		moviePagination.nextPage();
+		moviesApiService.incrementPage();
 	});
 
 	prevPageRef.addEventListener('click', () => {
 		moviePagination.prevPage();
+		moviesApiService.decrementPage();
 	});
 }
 
