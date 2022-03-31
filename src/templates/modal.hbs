@@ -1,0 +1,48 @@
+{{#with data}}
+	<div class='film__details modal'>
+
+		<div class='img-thumb' id={{id}}>
+			<div class='img-wrapper'>
+				<img
+					src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
+					alt='poster'
+					width='396'
+				/>
+			</div>
+			<div class='film__props'>
+				<h1 class='film__title'>{{title}}</h1>
+				<ul class='film__wrapper'>
+					<li class='film__label'>
+						<p>Vote / Votes</p>
+						<p class='film__description-1'>
+							<span class='accent'>{{vote_average}}</span><span
+							>/</span>{{vote_count}}</p>
+					</li>
+					<li class='film__label'>
+						<p>Popularity</p>
+						<p class='film__description-2'>{{popularity}}</p>
+					</li>
+					<li class='film__label'>
+						<p>Original Title</p>
+						<p class='film__description-3'>{{title}}</p>
+					</li>
+					<li class='film__label'>
+						<p>Genres</p>
+						<p class='film__description-4'>{{#each genres}}{{name}}{{/each}}</p>
+					</li>
+					<li class='film__label-about'>
+						<p>About</p>
+						<p class='film__about'>{{overview}}</p>
+					</li>
+				</ul>
+				<div class='btn-block'>
+					<button class='add-to-lib-btn' data-action='addToLib'>add to watched</button>
+					<button class='add-to-que-btn' data-action='addToQue'>add to queue</button>
+				</div>
+			</div>
+
+		</div>
+		<button class='close-btn' data-action='close'>x</button>
+
+	</div>
+{{/with}}

@@ -10,6 +10,16 @@ export default class MoviesApiService {
 
 	async getPopularFilms() {
 		try {
+			const url = `${BASE_URL}/3/movie/popular?api_key=${API_KEY}&page=${this.page}`;
+			const response = await axios.get(url);
+			return response;
+		} catch (error) {
+			return error;
+		}
+	}
+
+	async getTrendFilms() {
+		try {
 			const url = `${BASE_URL}/3/trending/movie/week?api_key=${API_KEY}`;
 			const response = await axios.get(url);
 			return response;
