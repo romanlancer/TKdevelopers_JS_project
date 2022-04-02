@@ -1,10 +1,10 @@
 import MoviesApiService from './fetch_api';
-
-import movieDetails from '../templates/modal.hbs';
+import RenderService from './render_service';
 const modal = document.querySelector('[data-modal]');
 const moviesListRef = document.querySelector('[data-list]');
 const movieCollectionRef = document.querySelector('[data-container]');
 const moviesApiService = new MoviesApiService();
+const renderService = new RenderService();
 
 function closeModal() {
 	modal.classList.add('is-hidden');
@@ -14,7 +14,7 @@ function closeModal() {
 function openModal(id) {
 	modal.classList.remove('is-hidden');
 	moviesApiService.getFilmDetails(id).then(movie => {
-		modal.insertAdjacentHTML('afterbegin', movieDetails(movie));
+		renderService.renderFilmDetails(movie.data);
 	});
 
 	modal.addEventListener('click', e => {

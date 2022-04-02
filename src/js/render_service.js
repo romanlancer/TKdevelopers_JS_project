@@ -99,7 +99,7 @@ export default class RenderService {
 					</li>
 					<li class='film__label'>
 						<p>Original Title</p>
-						<p class='film__description-3'>${title}</p>
+						<p class='film__description-3'>${upperTitle}</p>
 					</li>
 					<li class='film__label'>
 						<p>Genres</p>
