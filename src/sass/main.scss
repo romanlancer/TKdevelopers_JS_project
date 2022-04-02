@@ -6,6 +6,7 @@
 // Стили для файла с примером HTML-фрагмента
 @import './utils/variables';
 @import './utils/base_reset';
+@import './utils/mixins';
 @import './components/header_library';
 @import './components/header';
 @import './components/movie_cards';

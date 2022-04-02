@@ -3,3 +3,25 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 25px;
 }
+
+.movie.container {
+	padding-top: 60px;
+}
+
+.movie {
+	&_image {
+		border-radius: 5px;
+		width: 274px;
+		height: 398px;
+	}
+	&_title {
+		margin-top: 10px;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: calc(16 / 12);
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	&_text {
+	}
+}

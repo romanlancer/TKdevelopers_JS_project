@@ -64,9 +64,22 @@ function clearMoviesContainer() {
 
 function renderMovieList(movies) {
 	const moviesList = movies.map(movie => {
-		const { id, original_title, poster_path } = movie;
+		const {
+			id,
+			original_title,
+			poster_path,
+			genre_ids,
+			release_date,
+			vote_average,
+		} = movie;
 
 		return {
+			id,
+			original_title,
+			poster_path,
+			genre_ids,
+			release_date,
+			vote_average,
 			id,
 			original_title,
 			poster: generateImgPath(poster_path),

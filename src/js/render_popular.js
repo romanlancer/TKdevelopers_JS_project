@@ -21,9 +21,19 @@ const moviePagination = new Pagination({
 
 const renderMovieList = movies => {
 	const moviesList = movies.map(movie => {
-		const { id, original_title, poster_path } = movie;
+		const {
+			id,
+			original_title,
+			poster_path,
+			genre_ids,
+			release_date,
+			vote_average,
+		} = movie;
 
 		return {
+			genre_ids,
+			release_date,
+			vote_average,
 			id,
 			original_title,
 			poster: generateImgPath(poster_path),
@@ -81,7 +91,9 @@ prevPageRef.addEventListener('click', () => {
 moviesApiService.getPopularFilms().then(({ data }) => {
 	renderMovieList(data.results);
 	console.log(data);
+
 	moviePagination.total = 500;
+	moviePagination.currentPage = 1;
 });
 
 function clearMoviesContainer() {
