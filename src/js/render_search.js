@@ -1,10 +1,8 @@
 import MoviesApiService from './fetch_api';
+import RenderService from './render_service';
 import Notiflix from 'notiflix';
 import Pagination from './pagination';
-import { generateImgPath } from './generate_img_path';
-import moviesCardTemplate from '../templates/movie_cards.hbs';
-
-const moviesListRef = document.querySelector('[data-list]');
+const moviesList = document.querySelector('[data-list]');
 const paginationListRef = document.querySelector(
 	'.pagination .pagination-list',
 );
@@ -13,6 +11,7 @@ const prevPageRef = document.querySelector('.prev-page');
 const searchFormRef = document.querySelector('#search-form');
 
 const moviesApiService = new MoviesApiService();
+const renderService = new RenderService();
 
 const moviePagination = new Pagination({
 	total: 1,
@@ -59,41 +58,14 @@ function onSearch(e) {
 }
 
 function clearMoviesContainer() {
-	moviesListRef.innerHTML = '';
-}
-
-function renderMovieList(movies) {
-	const moviesList = movies.map(movie => {
-		const {
-			id,
-			original_title,
-			poster_path,
-			genre_ids,
-			release_date,
-			vote_average,
-		} = movie;
-
-		return {
-			id,
-			original_title,
-			poster_path,
-			genre_ids,
-			release_date,
-			vote_average,
-			id,
-			original_title,
-			poster: generateImgPath(poster_path),
-		};
-	});
-
-	moviesListRef.insertAdjacentHTML('beforeend', moviesCardTemplate(moviesList));
+	moviesList.innerHTML = '';
 }
 
 function handlePageChange(currentPage) {
 	moviesApiService.page = currentPage;
 	moviesApiService.getFilmsByName().then(({ data }) => {
 		clearMoviesContainer();
-		renderMovieList(data.results);
+		renderService.renderSearchedFilms(data.results);
 		moviePagination.total = data.total_pages;
 
 		if (currentPage === 1) {

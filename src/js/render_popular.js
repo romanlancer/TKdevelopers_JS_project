@@ -1,9 +1,7 @@
 import MoviesApiService from './fetch_api';
+import RenderService from './render_service';
 import Pagination from './pagination';
-import { generateImgPath } from './generate_img_path';
-import moviesCardTemplate from '../templates/movie_cards.hbs';
-
-const moviesListRef = document.querySelector('[data-container]');
+const moviesList = document.querySelector('[data-list]');
 const paginationListRef = document.querySelector(
 	'.pagination .pagination-list',
 );
@@ -11,37 +9,13 @@ const nextPageRef = document.querySelector('.next-page');
 const prevPageRef = document.querySelector('.prev-page');
 
 const moviesApiService = new MoviesApiService();
-
+const renderService = new RenderService();
 const moviePagination = new Pagination({
 	total: 1,
 	onChange(value) {
 		handlePageChangeMain(value);
 	},
 });
-
-const renderMovieList = movies => {
-	const moviesList = movies.map(movie => {
-		const {
-			id,
-			original_title,
-			poster_path,
-			genre_ids,
-			release_date,
-			vote_average,
-		} = movie;
-
-		return {
-			genre_ids,
-			release_date,
-			vote_average,
-			id,
-			original_title,
-			poster: generateImgPath(poster_path),
-		};
-	});
-
-	moviesListRef.insertAdjacentHTML('beforeend', moviesCardTemplate(moviesList));
-};
 
 paginationListRef.addEventListener('click', event => {
 	if (
@@ -55,10 +29,10 @@ paginationListRef.addEventListener('click', event => {
 
 const handlePageChangeMain = currentPage => {
 	moviesApiService.page = currentPage;
-	clearMoviesContainer();
-	moviesApiService.getPopularFilms().then(({ data }) => {
-		renderMovieList(data.results);
 
+	moviesApiService.getPopularFilms().then(({ data }) => {
+		renderService.renderPopularFilms(data.results);
+		moviePagination.total = 500;
 		if (currentPage === 1) {
 			prevPageRef.setAttribute('disabled', true);
 			prevPageRef.classList.add('disabled');
@@ -89,13 +63,10 @@ prevPageRef.addEventListener('click', () => {
 });
 
 moviesApiService.getPopularFilms().then(({ data }) => {
-	renderMovieList(data.results);
-	console.log(data);
-
-	moviePagination.total = 500;
+	renderService.renderPopularFilms(data.results);
 	moviePagination.currentPage = 1;
 });
 
 function clearMoviesContainer() {
-	moviesListRef.innerHTML = '';
+	moviesList.innerHTML = '';
 }
