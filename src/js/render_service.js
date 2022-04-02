@@ -8,26 +8,41 @@ import noPoster from '../images/movie-poster-coming-soon.jpg';
 export default class RenderService {
 	constructor() {}
 
+	getClassByRate(vote) {
+		if (vote >= 7) {
+			return 'green';
+		} else if (vote > 5) {
+			return 'orange';
+		} else {
+			return 'red';
+		}
+	}
 	renderSearchedFilms(filmArray) {
 		moviesSearch.innerHTML = '';
 		const markup = filmArray
-			.map(({ id, title, poster_path, genre_ids, release_date }) => {
-				const imagePath =
-					poster_path === null
-						? `${noPoster}`
-						: `https://image.tmdb.org/t/p/w500/${poster_path}`;
-				const upperTitle = title.toUpperCase();
-				const generesFilmArray = getGenres(genre_ids);
-				const date = release_date.slice(0, 4);
+			.map(
+				({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
+					const imagePath =
+						poster_path === null
+							? `${noPoster}`
+							: `https://image.tmdb.org/t/p/w500/${poster_path}`;
+					const upperTitle = title.toUpperCase();
+					const generesFilmArray = getGenres(genre_ids);
+					const date = release_date.slice(0, 4);
 
-				return `
+					return `
                    <li class='movie' id=${id}>
 		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy'/>
 		              <h2 class='movie_title'>${upperTitle}</h2>
 		              <p class='movie_text'>${generesFilmArray} | ${date}</p>
+					  <div class='movie_rating movie_rating--${this.getClassByRate(
+							vote_average,
+						)}'>${vote_average}</div>
 	               </li>
+				   	
                 `;
-			})
+				},
+			)
 			.join('');
 
 		moviesSearch.insertAdjacentHTML('afterbegin', markup);
@@ -36,23 +51,29 @@ export default class RenderService {
 	renderPopularFilms(filmArray) {
 		moviesList.innerHTML = '';
 		const markup = filmArray
-			.map(({ id, title, poster_path, genre_ids, release_date }) => {
-				const imagePath =
-					poster_path === null
-						? `${noPoster}`
-						: `https://image.tmdb.org/t/p/w500/${poster_path}`;
-				const upperTitle = title.toUpperCase();
-				const generesFilmArray = getGenres(genre_ids);
-				const date = release_date.slice(0, 4);
+			.map(
+				({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
+					const imagePath =
+						poster_path === null
+							? `${noPoster}`
+							: `https://image.tmdb.org/t/p/w500/${poster_path}`;
+					const upperTitle = title.toUpperCase();
+					const generesFilmArray = getGenres(genre_ids);
+					const date = release_date.slice(0, 4);
 
-				return `
+					return `
                     <li class='movie' id=${id}>
 		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy'/>
 		              <h2 class='movie_title'>${upperTitle}</h2>
 		              <p class='movie_text'>${generesFilmArray} | ${date}</p>
+					  <div class='movie_rating movie_rating--${this.getClassByRate(
+							vote_average,
+						)}' >${vote_average}</div>
 	               </li>
+				   
                 `;
-			})
+				},
+			)
 			.join('');
 
 		moviesList.insertAdjacentHTML('afterbegin', markup);

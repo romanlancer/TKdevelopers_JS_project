@@ -9,6 +9,7 @@
 }
 
 .movie {
+	position: relative;
 	&_image {
 		border-radius: 5px;
 		width: 274px;
@@ -23,5 +24,28 @@
 		font-weight: bold;
 	}
 	&_text {
+	}
+	&_rating {
+		@include centralFlex();
+		position: absolute;
+		color: aqua;
+		top: 20px;
+		left: 20px;
+		font-size: 20px;
+		color: var(--first-text-color);
+		background-color: rgb(39, 34, 34);
+		width: 45px;
+		height: 45px;
+		border-radius: 50%;
+		border: 2px solid;
+	}
+	&_rating--red {
+		border-color: red;
+	}
+	&_rating--orange {
+		border-color: orange;
+	}
+	&_rating--green {
+		border-color: green;
 	}
 }
