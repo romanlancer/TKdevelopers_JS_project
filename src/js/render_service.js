@@ -118,11 +118,7 @@ export default class RenderService {
 			</div>
 
 		</div>
-		<button class='close-btn' type="button" data-action='close'>
-			<svg  data-action='close' width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="m8 8 14 14M8 22 22 8" stroke="#000" stroke-width="2"/>
-             </svg>
-		</button>
+		<button class='close-btn' type="button" data-action='close'></button>
 	</div>
         `;
 
