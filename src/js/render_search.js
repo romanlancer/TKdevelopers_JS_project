@@ -26,7 +26,7 @@ function onSearch(e) {
 	moviesApiService.query = e.currentTarget.elements.searchQuery.value;
 
 	if (moviesApiService.query === '') {
-		return Notiflix.Notify.failure('Wrong attempt bro, please enter something');
+		return Notiflix.Notify.failure('Please type something');
 	}
 	clearMoviesContainer();
 

@@ -1,4 +1,5 @@
 const moviesList = document.querySelector('[data-list]');
+const moviesOnInputList = document.querySelector('#search-list');
 const moviesSearch = document.querySelector('[data-container]');
 const modal = document.querySelector('[data-modal]');
 
@@ -17,6 +18,37 @@ export default class RenderService {
 			return 'red';
 		}
 	}
+
+	renderMoviesOnInput(filmArray) {
+		moviesOnInputList.innerHTML = '';
+
+		const markup = filmArray
+			.map(({ id, title, poster_path, release_date }) => {
+				const imagePath =
+					poster_path === null
+						? `${noPoster}`
+						: `https://image.tmdb.org/t/p/w500/${poster_path}`;
+				const upperTitle = title.toUpperCase();
+
+				const date = release_date.slice(0, 4);
+
+				return `
+                   <div class="search-form-list__item" id=${id} >
+						<div class="search-form-list__thumbnail id=${id}">
+							<img src=${imagePath} alt="poster" />
+						</div>
+						<div class="search-form-list__info">
+							<h3>${upperTitle}</h3>
+							<p>${date}</p>
+						</div>
+					</div>				   	
+                `;
+			})
+			.join('');
+
+		moviesOnInputList.insertAdjacentHTML('afterbegin', markup);
+	}
+
 	renderSearchedFilms(filmArray) {
 		moviesSearch.innerHTML = '';
 		const markup = filmArray
@@ -152,5 +184,9 @@ export default class RenderService {
 
 	clearGalleryList() {
 		moviesList.innerHTML = '';
+	}
+
+	clearInputList() {
+		moviesOnInputList.innerHTML = '';
 	}
 }

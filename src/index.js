@@ -6,3 +6,4 @@ import './js/render_search';
 import './js/modal_details';
 import './js/render_service';
 import './js/genres_info'
+import './js/render_input';
