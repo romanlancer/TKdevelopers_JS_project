@@ -42,6 +42,7 @@ function onSearch(e) {
 		moviesApiService.getFilmsByName().then(({ data }) => {
 			clearMoviesContainer();
 			renderService.renderSearchedFilms(data.results);
+
 			moviePagination.total = data.total_pages;
 
 			if (currentPage === 1) {

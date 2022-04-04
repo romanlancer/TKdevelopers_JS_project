@@ -10,11 +10,14 @@
 
 .movie {
 	position: relative;
+
 	&_image {
 		border-radius: 5px;
 		width: 274px;
 		height: 398px;
+		cursor: pointer;
 	}
+
 	&_title {
 		margin-top: 10px;
 		font-weight: 500;

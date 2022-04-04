@@ -26,7 +26,8 @@ function openModal(id) {
 
 function getDetails(e) {
 	if (e.target.nodeName === 'IMG') {
-		const { id } = e.target.parentNode;
+		const id = parseInt(e.target.getAttribute('id'));
+		console.log(id);
 		openModal(id);
 	}
 }

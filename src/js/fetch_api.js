@@ -54,6 +54,17 @@ export default class MoviesApiService {
 			return error;
 		}
 	}
+
+	async getFilmVideo(id) {
+		try {
+			const url = `${BASE_URL}/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+			const response = await axios.get(url);
+			return response;
+		} catch (error) {
+			return error;
+		}
+	}
+
 	set query(newQuery) {
 		this.searchQuery = newQuery;
 	}

@@ -23,7 +23,7 @@ const genres = [
 export function getGenres(idsArr) {
 	const genresArray = [];
 	idsArr.map(id =>
-		genresArray.push(genres.find(gener => gener.id === id).name),
+		genresArray.push(genres.find(genre => genre.id === id).name),
 	);
 	return genresArray.splice(0, 2).join(', ');
 }

@@ -19,7 +19,7 @@
 					<svg class="header_icon" width="24" height="24">
 						<use href="./images/sprite.svg#icon-film"></use>
 					</svg>
-					<h1 class="header_logo">TKcinema</h1>
+					<a href="./index.html"><h1 class="header_logo">TKcinema</h1></a>
 					<nav class="navigation">
 						<ul class="navigation_list">
 							<li class="navigation_item">
@@ -43,7 +43,11 @@
 							placeholder="Search films"
 							autocomplete="off"
 						/>
-						<div class="search-form-list" id="search-list"></div>
+						<ul
+							class="search-form-list"
+							id="search-list"
+							data-action="current"
+						></ul>
 						<button type="submit" class="search-form_button">
 							<svg width="12" height="12">
 								<use href="./images/sprite.svg#icon-search-2"></use>
@@ -64,8 +68,20 @@
 					<button class="next-page">Next</button>
 				</div>
 			</div>
+
+			<a href="#" id="toTop">
+				<span
+					><img
+						class="to-top-arrow"
+						src="./images/arrow-to-top.webp"
+						alt="arrow-to-top"
+				/></span>
+			</a>
 		</main>
+
 		<div class="backdrop is-hidden" data-modal></div>
+		<div class="backdrop is-hidden" data-modal-video></div>
+
 		<script src="./index.js"></script>
 	</body>
 </html>

@@ -3,9 +3,9 @@ import RenderService from './render_service';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 const bodyEl = document.querySelector('body');
-
+const modal = document.querySelector('[data-modal]');
 const searchFormInputEl = document.querySelector('#searchQuery');
-
+const inputContainer = document.querySelector('#search-list');
 const moviesApiService = new MoviesApiService();
 const renderService = new RenderService();
 const DEBOUNCE_DELAY = 300;
@@ -20,7 +20,7 @@ searchFormInputEl.addEventListener(
 	'input',
 	debounce(onInputSearch, DEBOUNCE_DELAY),
 );
-
+inputContainer.addEventListener('click', getMovie);
 bodyEl.addEventListener('click', inputClose);
 
 function onInputSearch(e) {
@@ -35,6 +35,7 @@ function onInputSearch(e) {
 		.getFilmsByName()
 		.then(({ data }) => {
 			renderService.renderMoviesOnInput(data.results);
+
 			if (data.total_results === 0 && moviesApiService.query !== 0) {
 				Notiflix.Notify.failure('Sorry, film is not found');
 			}
@@ -46,14 +47,37 @@ function onInputSearch(e) {
 		})
 		.catch();
 }
+
 function inputClose(e) {
 	if (e.target.className !== 'search-form_input') {
 		renderService.clearInputList();
 	}
 }
 
+function openModal(id) {
+	modal.classList.remove('is-hidden');
+	moviesApiService.getFilmDetails(id).then(movie => {
+		renderService.renderFilmDetails(movie.data);
+	});
+
+	modal.addEventListener('click', e => {
+		if (e.target.dataset.action === 'close') {
+			closeModal();
+		}
+	});
+}
+
+function closeModal() {
+	modal.classList.add('is-hidden');
+	modal.innerHTML = '';
+}
+
+function getMovie(e) {
+	searchFormInputEl.value = '';
+	const id = parseInt(e.target.getAttribute('id'));
+	openModal(id);
+}
 // function loadMovieDetails() {
-// 	const inputElItems = document.querySelectorAll('.search-form-list__item');
 // 	console.log(inputElItems);
 // 	inputElItems.forEach(item => {
 // 		item.addEventListener('click', () => {

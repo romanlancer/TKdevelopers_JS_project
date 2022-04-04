@@ -32,6 +32,7 @@ const handlePageChangeMain = currentPage => {
 
 	moviesApiService.getPopularFilms().then(({ data }) => {
 		renderService.renderPopularFilms(data.results);
+		moviePagination.total = 0;
 		moviePagination.total = 500;
 		if (currentPage === 1) {
 			prevPageRef.setAttribute('disabled', true);

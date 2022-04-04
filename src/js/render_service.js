@@ -2,6 +2,7 @@ const moviesList = document.querySelector('[data-list]');
 const moviesOnInputList = document.querySelector('#search-list');
 const moviesSearch = document.querySelector('[data-container]');
 const modal = document.querySelector('[data-modal]');
+const modalVideo = document.querySelector('[data-modal-video]');
 
 import { getGenres } from './genres_info';
 import noPoster from '../images/movie-poster-coming-soon.jpg';
@@ -30,18 +31,16 @@ export default class RenderService {
 						: `https://image.tmdb.org/t/p/w500/${poster_path}`;
 				const upperTitle = title.toUpperCase();
 
-				const date = release_date.slice(0, 4);
-
 				return `
-                   <div class="search-form-list__item" id=${id} >
-						<div class="search-form-list__thumbnail id=${id}">
-							<img src=${imagePath} alt="poster" />
+                    <li class="search-form-list__item" id=${id}/>
+						<div class="search-form-list__thumbnail">
+							<img src=${imagePath} alt="poster" id=${id} />
 						</div>
 						<div class="search-form-list__info">
-							<h3>${upperTitle}</h3>
-							<p>${date}</p>
+							<h3 id=${id}>${upperTitle}</h3>
+							<p id=${id}>${release_date}</p>
 						</div>
-					</div>				   	
+					</li>				   	
                 `;
 			})
 			.join('');
@@ -63,8 +62,8 @@ export default class RenderService {
 					const date = release_date.slice(0, 4);
 
 					return `
-                   <li class='movie' id=${id}>
-		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy'/>
+                   <li class='movie' >
+		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy' id=${id}/>
 		              <h2 class='movie_title'>${upperTitle}</h2>
 		              <p class='movie_text'>${generesFilmArray} | ${date}</p>
 					  <div class='movie_rating movie_rating--${this.getClassByRate(
@@ -94,8 +93,8 @@ export default class RenderService {
 					const date = release_date.slice(0, 4);
 
 					return `
-                    <li class='movie' id=${id}>
-		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy'/>
+                    <li class='movie' >
+		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy' id=${id}/>
 		              <h2 class='movie_title'>${upperTitle}</h2>
 		              <p class='movie_text'>${generesFilmArray} | ${date}</p>
 					  <div class='movie_rating movie_rating--${this.getClassByRate(
@@ -133,9 +132,9 @@ export default class RenderService {
 		const markup = `
             <div class='film__details modal'>
 
-		  <div class='img-thumb' id=${id}>
+		  <div class='img-thumb' >
 
-			<img src=${imagePath} alt='poster' />
+			<img src=${imagePath} alt='poster' id=${id}/>
 
 			<div class='film__props'>
 				<h1 class='film__title'>${upperTitle}</h1>
@@ -163,7 +162,7 @@ export default class RenderService {
 						<p class='film__about'>${overview}</p>
 					</li>
 				</ul>
-				
+				<div class='trailer'><img src='https://icons.iconarchive.com/icons/jamespeng/movie/256/trailer-icon.png' alt='poster' id=${id}/></div>
 				<div class='btn-block'>
 					<button class='add-to-lib-btn' data-action='addToLib'>add to watched</button>
 					<button class='add-to-que-btn' data-action='addToQue'>add to queue</button>
@@ -176,6 +175,27 @@ export default class RenderService {
         `;
 
 		modal.insertAdjacentHTML('afterbegin', markup);
+	}
+
+	renderTrailer(filmArray) {
+		modalVideo.innerHTML = '';
+		const markup = filmArray
+			.map(({ key }) => {
+				return `
+            <div class="video-trailer modal"
+				><iframe
+					src= 'https://www.youtube.com/embed/${key}'
+					width="100%"
+					height="500"
+					frameborder="0"	
+				></iframe
+			></div>
+			<button class='close-btn-trailer' type="button" data-action='close'></button>   
+                `;
+			})
+			.join('');
+
+		modalVideo.insertAdjacentHTML('afterbegin', markup);
 	}
 
 	clearList() {
