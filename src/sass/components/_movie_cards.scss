@@ -9,13 +9,26 @@
 }
 
 .movie {
-	position: relative;
+	box-shadow: 0px 0px 8px 4px rgba(53, 50, 50, 0.6);
+	&_item {
+		position: relative;
+
+		border-radius: 5px;
+		transform: scale(1);
+		transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+			transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+		&:hover,
+		&:focus {
+			box-shadow: 0px 0px 8px 6px var(--accent-color);
+			transform: scale(1.06);
+		}
+	}
 
 	&_image {
 		border-radius: 5px;
-		width: 274px;
-		height: 398px;
 		cursor: pointer;
+		object-fit: cover;
 	}
 
 	&_title {

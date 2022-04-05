@@ -62,7 +62,7 @@ export default class RenderService {
 					const date = release_date.slice(0, 4);
 
 					return `
-                   <li class='movie' >
+                   <li class='movie_item' >
 		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy' id=${id}/>
 		              <h2 class='movie_title'>${upperTitle}</h2>
 		              <p class='movie_text'>${generesFilmArray} | ${date}</p>
@@ -93,7 +93,7 @@ export default class RenderService {
 					const date = release_date.slice(0, 4);
 
 					return `
-                    <li class='movie' >
+                    <li class='movie_item' >
 		              <img class='movie_image' src=${imagePath} alt='poster' loading='lazy' id=${id}/>
 		              <h2 class='movie_title'>${upperTitle}</h2>
 		              <p class='movie_text'>${generesFilmArray} | ${date}</p>
