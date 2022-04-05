@@ -162,10 +162,12 @@ export default class RenderService {
 						<p class='film__about'>${overview}</p>
 					</li>
 				</ul>
-				<div class='trailer'><img src='https://icons.iconarchive.com/icons/jamespeng/movie/256/trailer-icon.png' alt='poster' id=${id}/></div>
+				<div class='film__wrapper-trailer'>
+				<div class='trailer'><img class='trailer__image' src='https://icons.iconarchive.com/icons/jamespeng/movie/256/trailer-icon.png' alt='poster' id=${id}/></div>
 				<div class='btn-block'>
 					<button class='add-to-lib-btn' data-action='addToLib'>add to watched</button>
 					<button class='add-to-que-btn' data-action='addToQue'>add to queue</button>
+				</div>
 				</div>
 			</div>
 

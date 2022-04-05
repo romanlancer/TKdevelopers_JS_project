@@ -27,7 +27,10 @@ function openModal(id) {
 }
 
 function getVideo(e) {
-	if (e.target.nodeName === 'IMG') {
+	if (
+		e.target.nodeName === 'IMG' &&
+		e.target.classList.contains('trailer__image')
+	) {
 		const id = parseInt(e.target.getAttribute('id'));
 		console.log(id);
 		openModal(id);

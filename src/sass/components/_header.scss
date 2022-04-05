@@ -132,6 +132,7 @@
 .search-form_wrapper {
 	border-bottom: 0.5px solid var(--first-text-color);
 	position: relative;
+	display: flex;
 }
 
 .search-form_input {
