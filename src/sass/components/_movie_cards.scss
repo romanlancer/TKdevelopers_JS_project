@@ -47,6 +47,7 @@
 		font-weight: bold;
 	}
 	&_text {
+		color: var(--accent-color);
 	}
 	&_rating {
 		@include centralFlex();

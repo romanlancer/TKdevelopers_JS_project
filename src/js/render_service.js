@@ -140,27 +140,27 @@ export default class RenderService {
 				<h1 class='film__title'>${upperTitle}</h1>
 				<ul class='film__wrapper'>
 					<li class='film__label'>
-						<p>Vote / Votes</p>
+						<p class='film__text-left'>Vote / Votes</p>
 						<p class='film__description-1'>
-							<span class='accent'>${vote_average}</span><span></span>
+							<span class='accent'>${vote_average}</span><span class='accent-slash'>
 								/</span> ${vote_count}</p>
 					</li>
 					<li class='film__label'>
-						<p>Popularity</p>
+						<p class='film__text-left'>Popularity</p>
 						<p class='film__description-2'>${popularity}</p>
 					</li>
 					<li class='film__label'>
-						<p>Original Title</p>
+						<p class='film__text-left'>Original Title</p>
 						<p class='film__description-3'>${upperTitle}</p>
 					</li>
 					<li class='film__label'>
-						<p>Genres</p>
+						<p class='film__text-left'>Genres</p>
 						<p class='film__description-4'>${genresFilm}</p>
 					</li>
-					<li class='film__label-about'>
-						<p>About</p>
+					
+						<p class='film__about-text'>About</p>
 						<p class='film__about'>${overview}</p>
-					</li>
+					
 				</ul>
 				<div class='film__wrapper-trailer'>
 				<div class='trailer'><img class='trailer__image' src='https://icons.iconarchive.com/icons/jamespeng/movie/256/trailer-icon.png' alt='poster' id=${id}/></div>
