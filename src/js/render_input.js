@@ -25,6 +25,7 @@ bodyEl.addEventListener('click', inputClose);
 
 function onInputSearch(e) {
 	moviesApiService.query = e.target.value.trim();
+
 	renderService.clearInputList();
 
 	if (moviesApiService.query === '') {
@@ -77,23 +78,3 @@ function getMovie(e) {
 	const id = parseInt(e.target.getAttribute('id'));
 	openModal(id);
 }
-// function loadMovieDetails() {
-// 	console.log(inputElItems);
-// 	inputElItems.forEach(item => {
-// 		item.addEventListener('click', () => {
-// 			searchFormInputEl.value = '';
-// 			renderService.clearInputList();
-// 			const id = e.target.getAttribute(id);
-
-// 			moviesApiService.getFilmDetails(id).then(movie => {
-// 				renderService.renderSearchedFilms(movie.data);
-// 			});
-// 		});
-// 	});
-// }
-
-// function onFetchError(error) {
-// 	// if (moviesApiService.query === '') {
-// 	// 		Notiflix.Notify.failure('Please type something');
-// 	// 	}
-// }

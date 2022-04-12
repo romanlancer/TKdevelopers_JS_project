@@ -34,7 +34,7 @@ export default class RenderService {
 				return `
                     <li class="search-form-list__item" id=${id}/>
 						<div class="search-form-list__thumbnail">
-							<img src=${imagePath} alt="poster" id=${id} />
+							<img src=${imagePath} alt="poster" id=${id} loading='lazy'/>
 						</div>
 						<div class="search-form-list__info">
 							<h3 id=${id}>${upperTitle}</h3>
@@ -130,11 +130,11 @@ export default class RenderService {
 		const genresFilm = genres.map(genre => genre.name).join(', ');
 
 		const markup = `
-            <div class='film__details modal'>
+            <div class='film__details modal id=${id}'>
 
 		  <div class='img-thumb' >
 
-			<img src=${imagePath} alt='poster' id=${id}/>
+			<img src=${imagePath} alt='poster' id=${id} loading='lazy'/>
 
 			<div class='film__props'>
 				<h1 class='film__title'>${upperTitle}</h1>
@@ -163,7 +163,7 @@ export default class RenderService {
 					
 				</ul>
 				<div class='film__wrapper-trailer'>
-				<div class='trailer'><img class='trailer__image' src='https://icons.iconarchive.com/icons/jamespeng/movie/256/trailer-icon.png' alt='poster' id=${id}/></div>
+				<div class='trailer'><img class='trailer__image' src='https://icons.iconarchive.com/icons/jamespeng/movie/256/trailer-icon.png' alt='poster' loading='lazy' id=${id}/></div>
 				<div class='btn-block'>
 					<button class='add-to-lib-btn' data-action='addToLib'>add to watched</button>
 					<button class='add-to-que-btn' data-action='addToQue'>add to queue</button>
@@ -190,6 +190,8 @@ export default class RenderService {
 					width="100%"
 					height="500"
 					frameborder="0"	
+					allowfullscreen
+					sandbox
 				></iframe
 			></div>
 			<button class='close-btn-trailer' type="button" data-action='close'></button>   

@@ -9,3 +9,5 @@ import './js/genres_info';
 import './js/render_input';
 import './js/to_top_arrow';
 import './js/render_trailer';
+import './js/storage';
+import './js/library';

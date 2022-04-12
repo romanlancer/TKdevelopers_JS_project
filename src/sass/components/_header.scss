@@ -173,7 +173,6 @@
 	}
 }
 .navigation_link--current {
-	position: relative;
 	&::after {
 		content: ' ';
 		position: absolute;
