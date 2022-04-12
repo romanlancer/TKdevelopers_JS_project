@@ -191,7 +191,7 @@ export default class RenderService {
 					height="500"
 					frameborder="0"	
 					allowfullscreen
-					sandbox
+					
 				></iframe
 			></div>
 			<button class='close-btn-trailer' type="button" data-action='close'></button>   
